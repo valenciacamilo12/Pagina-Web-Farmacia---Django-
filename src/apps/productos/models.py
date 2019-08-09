@@ -1,15 +1,15 @@
 from django.db import models
-
-# Falta hacer la relacion entre las tablas OrdenPedido,Clientes,Empleados
+from apps.empleados.models import Empleado
+# Falta hacer la relacion entre las tablas OrdenPedido,Clientes,Empleados y Boleta con los mismos
 
 
 class Categoria(models.Model):
-    cod_cate = models.AutoField(primary_key=True,unique=True)
+    cod_cate = models.AutoField(primary_key=True, unique=True)
     nom_cate = models.CharField(max_length = 20)
 
 
 class Presentacion(models.Model):
-    cod_prese = models.AutoField(primary_key=True,unique=True)
+    cod_prese = models.AutoField(primary_key=True, unique=True)
     nom_pre = models.CharField(max_length = 20)
 
 
@@ -17,12 +17,12 @@ class Presentacion(models.Model):
 class Distrito(models.Model):
     cod_dis = models.AutoField(primary_key=True,unique=True)
     nom_dis = models.CharField(max_length = 20)
-
+    empleado = models.ForeignKey(Empleado,models.CASCADE,null=True,blank=True)
 
 class Proveedor(models.Model):
     cod_proveedor = models.AutoField(primary_key=True,unique=True)
-    nom_prov = models.CharField(max_length = 20)
-    dr_prov = models.CharField(max_length = 20)
+    nom_prov = models.CharField(max_length=20)
+    dr_prov = models.CharField(max_length=20)
     telefono = models.IntegerField(10)
     celular = models.IntegerField(10)
     id_distrito = models.ForeignKey(Distrito, models.CASCADE, null=True, blank=True)
@@ -59,4 +59,14 @@ class OrdenPedido(models.Model):
     total = models.CharField(max_length=30)
 
 
+
+
+class Boleta(models.Model):
+    num_boleta = models.AutoField(primary_key = True, unique=True)
+    fecha = models.CharField(max_length=10)
+    codi_empl = models.ForeignKey(Empleado, models.CASCADE,null=True,blank=True)
+    #codi_cli = models.ForeignKey()
+    num_ordenpedido = models.ForeignKey(OrdenPedido,models.CASCADE, null=True, blank=True)
+    subtotal = models.CharField(max_length=30)
+    descuento = models.CharField(max_length=30)
 
