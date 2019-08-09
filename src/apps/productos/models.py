@@ -1,6 +1,6 @@
 from django.db import models
 from apps.empleados.models import Empleado
-# Falta hacer la relacion entre las tablas OrdenPedido,Clientes,Empleados y Boleta con los mismos
+from apps.clientes.models import Cliente
 
 
 class Categoria(models.Model):
@@ -53,8 +53,8 @@ class DetalleOrdenPedido(models.Model):
 class OrdenPedido(models.Model):
     num_ordenpedido = models.AutoField(primary_key=True,unique=True)
     fecha = models.CharField(max_length=20)
-    #codigo_cliente = models.ForeignKey()
-    #nombre_cliente = models.ForeignKey()
+    codigo_cliente = models.ForeignKey(Cliente, models.CASCADE, null=True, blank=True)
+    nombre_cliente = models.CharField(max_length=30,default=True)
     cod_tipopago = models.CharField(max_length=30)
     total = models.CharField(max_length=30)
 
@@ -65,7 +65,7 @@ class Boleta(models.Model):
     num_boleta = models.AutoField(primary_key = True, unique=True)
     fecha = models.CharField(max_length=10)
     codi_empl = models.ForeignKey(Empleado, models.CASCADE,null=True,blank=True)
-    #codi_cli = models.ForeignKey()
+    codi_cli = models.ForeignKey(Cliente, models.CASCADE, null=True, blank=True)
     num_ordenpedido = models.ForeignKey(OrdenPedido,models.CASCADE, null=True, blank=True)
     subtotal = models.CharField(max_length=30)
     descuento = models.CharField(max_length=30)
