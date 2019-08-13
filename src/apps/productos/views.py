@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import CreateView,UpdateView,DeleteView,ListView
+from django.views.generic import CreateView,UpdateView,DeleteView,ListView,DetailView
 from apps.productos.models import Producto
 from apps.productos.forms import ProductoForm
 from django.core.urlresolvers import reverse_lazy
@@ -19,3 +19,8 @@ class CreateProducto(CreateView):
 class ListProducto(ListView):
     model = Producto
     template_name = 'productos/producto_shop.html'
+
+
+class DetailViewProducto(DetailView):
+    model = Producto
+    template_name = 'productos/producto_detail.html'
