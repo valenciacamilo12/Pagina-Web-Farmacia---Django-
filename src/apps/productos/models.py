@@ -36,9 +36,13 @@ class Producto(models.Model):
     pre_compra = models.CharField(max_length=30)
     fecha_ven = models.CharField(max_length=30)
     stock = models.CharField(max_length=30)
+    producto_imagen = models.ImageField(blank=True, width_field='width_field', height_field='height_field')
+    height_field = models.IntegerField(default=0)
+    width_field = models.IntegerField(default=0)
     cod_cate = models.ForeignKey(Categoria, models.CASCADE, blank=True, null=True)
     cod_prove = models.ForeignKey(Proveedor, models.CASCADE, blank=True, null=True)
     cod_pres = models.ForeignKey(Presentacion, models.CASCADE, blank=True, null=True)
+
 
 
 class DetalleOrdenPedido(models.Model):
