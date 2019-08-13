@@ -1,9 +1,10 @@
 from django.conf.urls import url
-from apps.productos.views import index,CreateProducto,ListProducto,DetailViewProducto
+from apps.productos.views import index,CreateProducto,ListProducto,DetailViewProducto,UpdateProducto
 
 urlpatterns = [
     url(r'^$', index),
     url(r'^nuevo$', CreateProducto.as_view(), name = 'producto_create'),
     url(r'^listar$', ListProducto.as_view(), name = 'producto_listar'),
     url(r'^detalle/(?P<pk>\d+)$', DetailViewProducto.as_view(), name='producto_detalle'),
+    url(r'^editar/(?P<pk>[\d]+)/$', UpdateProducto.as_view(), name='producto_editar'),
 ]

@@ -24,3 +24,10 @@ class ListProducto(ListView):
 class DetailViewProducto(DetailView):
     model = Producto
     template_name = 'productos/producto_detail.html'
+
+
+class UpdateProducto(UpdateView):
+    model = Producto
+    form_class = ProductoForm
+    template_name = 'productos/producto_form.html'
+    success_url = reverse_lazy('productos:producto_listar')
