@@ -4,10 +4,6 @@ from apps.productos.models import Producto
 from apps.productos.forms import ProductoForm
 from django.core.urlresolvers import reverse_lazy
 
-def index(request):
-    return render(request, 'productos/index.html')
-
-
 class CreateProducto(CreateView):
     model = Producto
     form_class = ProductoForm
@@ -30,4 +26,12 @@ class UpdateProducto(UpdateView):
     model = Producto
     form_class = ProductoForm
     template_name = 'productos/producto_form.html'
+    success_url = reverse_lazy('productos:producto_listar')
+
+
+
+class DeleteProducto(DeleteView):
+    model = Producto
+    form_class = ProductoForm
+    template_name = 'productos/producto_delete.html'
     success_url = reverse_lazy('productos:producto_listar')
