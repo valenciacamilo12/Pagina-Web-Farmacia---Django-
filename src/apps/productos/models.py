@@ -1,6 +1,7 @@
 from django.db import models
 from apps.empleados.models import Empleado
 from apps.clientes.models import Cliente
+from django.utils.translation import ugettext as _
 
 
 class Categoria(models.Model):
@@ -42,6 +43,15 @@ class Producto(models.Model):
     cod_cate = models.ForeignKey(Categoria, models.CASCADE, blank=True, null=True)
     cod_prove = models.ForeignKey(Proveedor, models.CASCADE, blank=True, null=True)
     cod_pres = models.ForeignKey(Presentacion, models.CASCADE, blank=True, null=True)
+
+    def __str__(self):
+        return '{}'.format(self.nom_producto)
+
+    class Meta:
+        permissions = {
+            ('is_uno', _('Usuario Uno')),
+            ('is_dos', _('Usuario Dos')),
+        }
 
 
 

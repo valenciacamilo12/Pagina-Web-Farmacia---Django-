@@ -1,0 +1,43 @@
+{% extends "base/base.html" %}
+{% block content%}
+    <table class="table table-border">
+        <thead>
+            <tr>
+                <th scope='col'> Codigo Producto</th>
+                <th scope='col'> Nombre Producto</th>
+                <th scope='col'> Precio Venta</th>
+                <th scope='col'> Precio Compra</th>
+                <th scope='col'> Fecha Venta</th>
+                <th scope='col'> Stock</th>
+                <th scope='col'> Codigo Categoria</th>
+                <th scope='col'> Codigo Proveedor</th>
+                <th scope='col'> Codigo Presentacion</th>
+            </tr>
+        </thead>
+        <tbody>
+            {%if object_list %}
+                {% for producto in object_list %}
+                    <tr>
+                        <th scope='row'>{{producto.cod_producto}}</th>
+                        <td>{{producto.nom_producto}}</td>
+                        <td>{{producto.pre_venta}}</td>
+                        <td>{{producto.pre_compra}}</td>
+                        <td>{{producto.fecha_ven}}</td>
+                        <td>{{producto.stock}}</td>
+                        <td>{{producto.cod_cate}}</td>
+                        <td>{{producto.cod_prove}}</td>
+                        <td>{{producto.cod_pres}}</td>
+                        <td>
+                            <a class="btn btn-success" href="{% url 'empleados:producto_nuevo' %}">Nuevo</a>
+                            <a class="btn btn-primary" href="{% url 'empleados:producto_editar' producto.cod_producto %}">Editar</a>
+                            <a class="btn btn-danger" href="{% url 'empleados:producto_eliminar' producto.cod_producto %}">Eliminar</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {%else %}
+                <h1>No hay registro de productos </h1>
+            {%endif %}
+        </tbody>
+    </table>
+
+{% endblock content%}
