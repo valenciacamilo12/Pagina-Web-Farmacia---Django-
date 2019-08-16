@@ -1,0 +1,26 @@
+{% extends "base/base.html" %}
+{% block content%}
+    <table class="table table-border">
+        <thead>
+            <tr>
+                <th scope='col'>Nombre Presentacion</th>
+            </tr>
+        </thead>
+        <tbody>
+            {%if object_list %}
+                {% for presentacion in object_list %}
+                    <tr>
+                        <th scope='row'>{{presentacion.nom_pre}}</th>
+                        <td>
+                            <a class="btn btn-info" href="{% url 'productos:presentacion_nueva'%}">Nuevo</a>
+                            <a class="btn btn-primary" href="{% url 'productos:presentacion_editar' presentacion.cod_prese %}">Editar</a>
+                            <a class="btn btn-danger" href="{% url 'productos:presentacion_eliminar' presentacion.cod_prese %}">Eliminar</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {%else %}
+                <h1>No hay registro de presentaciones</h1>
+            {%endif %}
+        </tbody>
+    </table>
+{% endblock content%}

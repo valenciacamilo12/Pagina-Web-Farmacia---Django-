@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic import CreateView,UpdateView,DeleteView,ListView,DetailView
 from apps.productos.models import Producto
 from apps.productos.models import Categoria
+from apps.productos.models import Presentacion
 from apps.productos.forms import ProductoForm
 from apps.productos.forms import CategoriaForm
 from apps.productos.forms import PresentacionForm
@@ -71,4 +72,34 @@ class CreateCategoria(CreateView):
     model = Categoria
     form_class = CategoriaForm
     template_name = 'productos/categoria_form.html'
+    success_url = reverse_lazy('productos:producto_listar')
+
+
+#-----------------Presentacion--------------------------------------------------
+
+class ListPresentacion(ListView):
+    model = Presentacion
+    template_name = 'productos/presentacion_list.html'
+
+
+class UpdatePresentacion(UpdateView):
+    model = Presentacion
+    form_class = PresentacionForm
+    template_name = 'productos/presentacion_form.html'
+    success_url = reverse_lazy('productos:producto_listar')
+
+
+
+class DeletePresentacion(DeleteView):
+    model = Presentacion
+    form_class = PresentacionForm
+    template_name = 'productos/presentacion_delete.html'
+    success_url = reverse_lazy('productos:producto_listar')
+
+
+
+class CreatePresentacion(CreateView):
+    model = Presentacion
+    form_class = PresentacionForm
+    template_name = 'productos/presentacion_form.html'
     success_url = reverse_lazy('productos:producto_listar')
