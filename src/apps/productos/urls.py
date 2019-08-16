@@ -2,6 +2,7 @@ from django.conf.urls import url
 from apps.productos.views import CreateProducto,ListProducto,DetailViewProducto,UpdateProducto,DeleteProducto
 from apps.productos.views import CreateCategoria, ListCategoria, UpdateCategoria, DeleteCategoria
 from apps.productos.views import CreatePresentacion, ListPresentacion, UpdatePresentacion, DeletePresentacion
+from apps.productos.views import CreateDistrito, ListDistrito, UpdateDistrito, DeleteDistrito
 
 urlpatterns = [
     url(r'^nuevo$', CreateProducto.as_view(), name = 'producto_create'),
@@ -17,4 +18,8 @@ urlpatterns = [
     url(r'^presentacion/listar$', ListPresentacion.as_view(), name='presentacion_listar'),
     url(r'^editar/presentacion/(?P<pk>[\d]+)/$', UpdatePresentacion.as_view(), name='presentacion_editar'),
     url(r'^eliminar/presentacion/(?P<pk>[\d]+)/$', DeletePresentacion.as_view(), name='presentacion_eliminar'),
+    url(r'^distrito/nuevo$', CreateDistrito.as_view(), name='distrito_nuevo'),
+    url(r'^distrito/listar$', ListDistrito.as_view(), name='distrito_listar'),
+    url(r'^distrito/editar/(?P<pk>[\d]+)/$', UpdateDistrito.as_view(), name='distrito_editar'),
+    url(r'^distrito/eliminar/(?P<pk>[\d]+)/$', DeleteDistrito.as_view(), name='distrito_eliminar'),
 ]

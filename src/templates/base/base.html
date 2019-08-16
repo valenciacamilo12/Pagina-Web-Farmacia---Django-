@@ -42,8 +42,9 @@
               <ul class="site-menu js-clone-nav d-none d-lg-block">
                 {% if perms.producto.is_uno %}
                   <li class="active"><a href="{%url 'empleados:producto_listar'%}">Productos</a></li>
-                  <li class="active"><a href="{%url 'productos:categoria_listar'%}">Categorias</a></li>
-                  <li class="active"><a href="{%url 'productos:presentacion_listar'%}">Presentaciones</a></li>
+                  <li><a href="{%url 'productos:categoria_listar'%}">Categorias</a></li>
+                  <li><a href="{%url 'productos:presentacion_listar'%}">Presentaciones</a></li>
+                  <li><a href="{%url 'productos:distrito_listar'%}">Distrito</a></li>
                 {% else %}
                   <li class="active"><a href="{%url 'usuarios:usuarios_inicio'%}">Home</a></li>
                   <li><a href="{%url 'productos:producto_listar'%}">Store</a></li>

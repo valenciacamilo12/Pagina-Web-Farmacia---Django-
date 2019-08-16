@@ -3,6 +3,7 @@ from django.views.generic import CreateView,UpdateView,DeleteView,ListView,Detai
 from apps.productos.models import Producto
 from apps.productos.models import Categoria
 from apps.productos.models import Presentacion
+from apps.productos.models import Distrito
 from apps.productos.forms import ProductoForm
 from apps.productos.forms import CategoriaForm
 from apps.productos.forms import PresentacionForm
@@ -102,4 +103,35 @@ class CreatePresentacion(CreateView):
     model = Presentacion
     form_class = PresentacionForm
     template_name = 'productos/presentacion_form.html'
+    success_url = reverse_lazy('productos:producto_listar')
+
+
+
+#-------------------------------Distrtito-------------------------------
+
+class ListDistrito(ListView):
+    model = Distrito
+    template_name = 'productos/distrito_list.html'
+
+
+class UpdateDistrito(UpdateView):
+    model = Distrito
+    form_class = DistritoForm
+    template_name = 'productos/distrito_form.html'
+    success_url = reverse_lazy('productos:producto_listar')
+
+
+
+class DeleteDistrito(DeleteView):
+    model = Distrito
+    form_class = DistritoForm
+    template_name = 'productos/distrito_delete.html'
+    success_url = reverse_lazy('productos:producto_listar')
+
+
+
+class CreateDistrito(CreateView):
+    model = Distrito
+    form_class = DistritoForm
+    template_name = 'productos/distrito_form.html'
     success_url = reverse_lazy('productos:producto_listar')

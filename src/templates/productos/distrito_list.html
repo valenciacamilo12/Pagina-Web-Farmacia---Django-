@@ -1,0 +1,28 @@
+{% extends "base/base.html" %}
+{% block content%}
+    <table class="table table-border">
+        <thead>
+            <tr>
+                <th scope='col'>Nombre Distrito</th>
+                <th scope='col'>Empleado</th>
+            </tr>
+        </thead>
+        <tbody>
+            {%if object_list %}
+                {% for distrito in object_list %}
+                    <tr>
+                        <td>{{distrito.nom_dis}}</td>
+                        <td>{{distrito.empleado}}</td>
+                        <td>
+                            <a class="btn btn-info" href="{% url 'productos:distrito_nuevo' %}">Nuevo</a>
+                            <a class="btn btn-primary" href="{% url 'productos:distrito_editar' distrito.cod_dis %}">Editar</a>
+                            <a class="btn btn-danger" href="{% url 'productos:distrito_eliminar' distrito.cod_dis %}">Eliminar</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {%else %}
+                <h1>No hay registro de distritos</h1>
+            {%endif %}
+        </tbody>
+    </table>
+{% endblock content%}
