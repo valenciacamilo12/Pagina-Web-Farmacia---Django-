@@ -1,0 +1,27 @@
+{% extends "base/base.html" %}
+{% block content%}
+    <table class="table table-border">
+        <thead>
+            <tr>
+                <th scope='col'>Nombre Categoria</th>
+            </tr>
+        </thead>
+        <tbody>
+            {%if object_list %}
+                {% for categoria in object_list %}
+                    <tr>
+                        <th scope='row'>{{categoria.nom_cate}}</th>
+                        <td>
+                            <a class="btn btn-info" href="{% url 'productos:categoria_nueva'%}">Nueva</a>
+                            <a class="btn btn-primary" href="{% url 'productos:categoria_editar' categoria.cod_cate %}">Editar</a>
+                            <a class="btn btn-danger" href="{% url 'productos:categoria_eliminar' categoria.cod_cate %}">Eliminar</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {%else %}
+                <h1>No hay registro de categorias</h1>
+            {%endif %}
+        </tbody>
+    </table>
+
+{% endblock content%}

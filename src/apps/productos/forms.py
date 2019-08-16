@@ -1,5 +1,9 @@
 from django import forms
 from apps.productos.models import Producto
+from apps.productos.models import Categoria
+from apps.productos.models import Presentacion
+from apps.productos.models import Distrito
+from apps.productos.models import Proveedor
 
 class ProductoForm(forms.ModelForm):
     class Meta:
@@ -42,3 +46,83 @@ class ProductoForm(forms.ModelForm):
         }
 
 
+
+class CategoriaForm(forms.ModelForm):
+    class Meta:
+        model = Categoria
+
+        fields = [
+            'nom_cate',
+        ]
+
+        labels = {
+            'nom_cate': 'Nombre de la Categoria',
+        }
+
+        fields = {
+            'nom_cate': forms.TextInput(attrs={'class': 'form-control'}),
+        }
+
+
+class PresentacionForm(forms.ModelForm):
+    class Meta:
+        model = Presentacion
+
+        fields = [
+            'nom_pre',
+        ]
+
+        labels = {
+            'nom_pre':'Nombre de la Presentacion',
+        }
+
+        widgets = {
+            'nom_pre': forms.TextInput(attrs={'class':'form-control'}),
+        }
+
+class DistritoForm(forms.ModelForm):
+    class Meta:
+        model = Distrito
+
+        fields = [
+            'nom_dis',
+            'empleado',
+
+        ]
+
+        labels = {
+            'nom_dis':'Nombre Distrito',
+            'empleado':'Empleado',
+        }
+
+        widgets = {
+            'nom_dis':forms.TextInput(attrs={'class':'form-control'}),
+            'empleado':forms.Select(attrs={'class':'form-control'}),
+        }
+
+
+class ProveedorForm(forms.ModelForm):
+    class Meta:
+        model = Proveedor
+
+
+        fields = [
+            'nom_prov',
+            'celular',
+            'id_distrito',
+            'dr_prov',
+        ]
+
+        labels = {
+            'nom_prov': 'Nombre Proveedor',
+            'celular': 'Celular',
+            'id_distrito': 'Distrito',
+            'dr_prov': 'Direccion Proveedor',
+        }
+
+        widgets = {
+            'nom_prov': forms.TextInput(attrs={'class':'form-control'}),
+            'celular': forms.TextInput(attrs={'class':'form-control'}),
+            'id_distrito': forms.TextInput(attrs={'class':'form-control'}),
+            'dr_prov': forms.Select(attrs={'class':'form-control'}),
+        }

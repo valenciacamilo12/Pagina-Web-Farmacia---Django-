@@ -6,7 +6,7 @@ from django.utils.translation import ugettext as _
 
 class Categoria(models.Model):
     cod_cate = models.AutoField(primary_key=True, unique=True)
-    nom_cate = models.CharField(max_length = 20)
+    nom_cate = models.CharField(max_length=20)
 
 
 class Presentacion(models.Model):
